@@ -4,7 +4,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
-<title>Lesson-18</title>
+<title>Start Page</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -28,12 +28,15 @@ h4 {
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">Students</div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="/">All Students</a></li>
 				<li><a href="add">new Student</a></li>
+				<li><form th:action="@{/logout}" method="post">
+						<input type="submit" value="Sign Out" />
+					</form></li>
 			</ul>
 		</div>
 	</nav>
@@ -44,24 +47,26 @@ h4 {
 				<table class="table table-image">
 					<thead>
 						<tr>
-							
+
 							<th scope="col">Image</th>
 							<th scope="col">firstName</th>
 							<th scope="col">lastName</th>
 							<th scope="col">age</th>
-							
+
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each = "students : ${students}">
-							
-							<td scope = "row"><img th:src="*{'data:image/jpeg;base64,'+{students.image}}" style = "width:100px; height: 100px;"></td>
+						<tr th:each="students : ${students}">
+
+							<td scope="row"><img
+								th:src="*{'data:image/jpeg;base64,'+{students.image}}"
+								style="width: 100px; height: 100px;"></td>
 							<td th:text=${students.firstName}></td>
 							<td th:text=${students.lastName}></td>
 							<td th:text=${students.age}></td>
-							
+
 						</tr>
-					
+
 					</tbody>
 				</table>
 			</div>
